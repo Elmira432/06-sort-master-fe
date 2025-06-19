@@ -58,7 +58,7 @@ const CreateContainerForm = () => {
           className={`text-sm p-2 rounded ${
             message.type === "success"
               ? "bg-green-100 text-green-700"
-              : "bg-red-100 text-red-700"
+              : "bg-red-200 text-red-700"
           }`}
         >
           {message.text}
