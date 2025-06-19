@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import AddItemForm from "./AddItemForm.tsx"
 
 interface Container {
     id: string;
@@ -12,7 +13,7 @@ const ContainerList = () => {
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
 
-    useEffect(() => {
+    const fetchContainers = () => {
         fetch("/api/containers")
             .then((res) => {
                 if (!res.ok) throw new Error("Network response was not ok");
@@ -20,12 +21,16 @@ const ContainerList = () => {
             })
             .then(setContainers)
             .catch(() => setError("Error loading containers."));
+    };
+
+    useEffect(() => {
+        fetchContainers();
     }, []);
 
     const handleDelete = async (id: string) => {
         try {
             const res = await fetch(`/api/containers/${id}`, {
-                method: "DELETE",
+                method: "DELETE"
             });
 
             if (!res.ok) throw new Error("Failed to delete container");
@@ -38,7 +43,6 @@ const ContainerList = () => {
             }
             setMessage("Error deleting container.");
         }
-
     };
 
     return (
@@ -61,8 +65,16 @@ const ContainerList = () => {
                         >
                             Remove
                         </button>
+
                         <h3 className="text-xl font-semibold">{container.name}</h3>
                         <p>{container.description}</p>
+
+                        <div className="mt-4 w-fit text-sm text-gray-500 py-4 rounded ">
+                            <AddItemForm
+                                containerId={container.id}
+                                onItemAdded={fetchContainers}
+                            />
+                        </div>
                     </li>
                 ))}
             </ul>

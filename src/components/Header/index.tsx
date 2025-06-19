@@ -35,6 +35,12 @@ export default function Header() {
           >
             Add container
           </Link>
+          <nav className="p-4">
+            <Link to="/items" className="text-black hover:underline">
+              Item List
+            </Link>
+          </nav>
+
         </nav>
       </div>
     </header>
