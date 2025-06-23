@@ -10,7 +10,7 @@ const ItemCard = ({ name, containerId }: ItemCardProps) => {
                 <div className="font-medium">{name}</div>
                 <div className="text-sm text-gray-500">Container ID: {containerId}</div>
             </div>
-            <button className="text-black bg-red-500 hover:bg-red-700 px-3 py-1 text-sm rounded">
+            <button className="text-black bg-red-600 hover:bg-red-700 px-3 py-1 text-sm rounded">
                 Delete
             </button>
         </div>
